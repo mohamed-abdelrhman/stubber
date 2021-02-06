@@ -15,7 +15,7 @@
 
 </p>
 
-> small package alternative for nestjs cli that create module files for you for those who use different project architecture different from the standard one introduced by nestjs hence cant use it's cli commands any more 
+> small package alternative for nestjs cli that creates a module files for you for those who use different project architecture different from the standard one introduced by nestjs hence can't use its cli.
 
 
 ## Install
@@ -40,8 +40,25 @@ stubber -g module-name -i input-name
 create all type file for graphql response :
 ```sh
 stubber -g module-name -t type-name
-```
+``` 
+### What files does stubber generates
+it creates all the below files and the imports between them
+```sh
+module-name.module.ts
+module-name.service.ts
+module-name.repository.ts
+module-name.resolver.ts
+module-name.resolver.ts
+entities/module-name.entitiy.ts
+types/type-name.type.ts
+inputs/input-name.input.ts
+``` 
 
+## Todo List
+<li>Create command for each possible file that might be created by the user</li>
+<li>Option for basic crude operations with the files generation</li>
+<li>Support different native connections and different ORMs rather than typeorm like mongoose and sequelize</li>
+<li>Support different project architectures and patterns  like CQRS</li>
 
 ## Author
 
