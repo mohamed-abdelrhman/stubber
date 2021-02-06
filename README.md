@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to @mohamed-abdelrhman/stubber 👋</h1>
+<h1 align="center">Welcome to stubber 👋</h1>
 <p>
   <a href="https://www.npmjs.com/package/@mohamed-abdelrhman/stubber" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/@mohamed-abdelrhman/stubber.svg">
@@ -9,16 +9,14 @@
   <a href="https://github.com/mohamed-abdelrhman/stubber/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/mohamed-abdelrhman/stubber/blob/master/LICENSE" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/github/license/mohamed-abdelrhman/@mohamed-abdelrhman/stubber" />
+  <a href="https://github.com/mohamed-abdelrhman/stubber/blob/master/README.md#-license" target="_blank">
+    <img alt="License: ISC" src="https://img.shields.io/npm/l/@mohamed-abdelrhman/stubber?style=flat-square" />
   </a>
+
 </p>
 
-> modular generator for nestjs
+> small package alternative for nestjs cli that create module files for you for those who use different project architecture different from the standard one introduced by nestjs hence cant use it's cli commands any more 
 
-### 🏠 [Homepage](https://github.com/mohamed-abdelrhman/stubber)
-
-### ✨ [Demo](https://github.com/mohamed-abdelrhman/stubber)
 
 ## Install
 
@@ -27,16 +25,23 @@ npm i @mohamed-abdelrhman/stubber
 ```
 
 ## Usage
-
+#####create all module files:
 ```sh
 stubber -g module-name -A
 ```
-
-## Run tests
-
+#####create all basic module files:
 ```sh
- 
+stubber -g module-name -B
 ```
+#####create new input file for graphql:
+```sh
+stubber -g module-name -i input-name
+```
+#####create all type file for graphql response :
+```sh
+stubber -g module-name -t type-name
+```
+
 
 ## Author
 
@@ -54,6 +59,9 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2021 [Mohamed Abdelrhman <mohamed95abdelrhman@gmail.com>](https://github.com/mohamed-abdelrhman).<br />
-This project is [ISC](https://github.com/mohamed-abdelrhman/stubber/blob/master/LICENSE) licensed.
+Copyright © 2021
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
