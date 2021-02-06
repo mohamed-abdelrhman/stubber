@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="1946eda1-6a91-485f-a463-60b9d7ede676" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/.prettierrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/nest-cli.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/src/app.controller.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/src/app.module.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/src/main.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/src/math.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/test/app.e2e-spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/test/jest-e2e.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/tsconfig.build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/tsconfig.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/tslint.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../nestJs/nestjs.micro.server-start/yarn.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../typeScript/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/fonts/HelveticaNeueReg.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/fonts/helveticabold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/add-user.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/apple.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/area.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/card.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/check-mark.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/check.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/chevron-left.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/chevron-right.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/compass.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/compassWhite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/down-arrow.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/down-grey-arrow.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/email.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/eye.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/gold-pin.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/heart.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/key.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/location/green-pin.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/location/grey-pin.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/location/purple-pin.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/magnifying-glass.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/menu-v.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/menu.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/p-plus.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/p_key.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/phone.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/photo-camera.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/pin.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/play-store.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/plus-2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/plus.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/saudi-arabia.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/searchwhite.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/shield.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/social/facebook.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/social/google-plus.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/social/instagram.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/social/linkedin.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/social/twitter.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/tag.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/trash.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/user.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/wall-clock.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/warning-priple.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/icons/warning.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/addImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/email-message.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/favouriteImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/featured-1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/featured-2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/featured-3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/home-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/home-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/home-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/home-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/home.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/left-arrow.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/map.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/noimage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/payMethods/Mada.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/payMethods/mastercard.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/payMethods/visa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/photo-camera.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/profle.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/user-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/user-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/user-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/user-4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/verify.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/y-bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/img/yellow-compass.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/sass/_formWizard.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/sass/_officeProfile.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/sass/_rangeSlider.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/sass/_recentAds.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/sass/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../assets/sass/main.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/ GoogleMap.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/About.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/Contact.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/FeaturedAds.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/Footer.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/HeaderNav.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/MapSearch.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Home/RecentAds.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/ModalView.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/RestoreModal.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/checkbox.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/customeInput.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/customeSelect.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/fileInput.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/formWizard.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/paymentMethod.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/rangeSlider.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/subscribe.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/UI/textarea.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layouts/authLayout.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../layouts/default.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../middleware/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nuxt.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pages/HomePage.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pages/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pages/auth/LogIn.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pages/index.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../plugins/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/User.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/adds.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/data.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/places.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../static/rangeSlider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../store/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../store/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitigonre" beforeDir="false" afterPath="$PROJECT_DIR$/.gitigonre" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/stubber.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ansi-regex/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ansi-regex/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/ansi-styles/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/ansi-styles/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/cliui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/cliui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/color-convert/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/color-convert/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/color-name/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/color-name/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/emoji-regex/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/emoji-regex/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/escalade/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/escalade/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/get-caller-file/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/get-caller-file/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/is-fullwidth-code-point/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/is-fullwidth-code-point/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/require-directory/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/require-directory/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/string-width/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/string-width/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/strip-ansi/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/strip-ansi/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/wrap-ansi/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/wrap-ansi/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/y18n/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/y18n/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yargs-parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yargs-parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/yargs/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/yargs/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1o4ImQVnq0QsP13fgRZKv6sGw7H" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/stubs" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/stubs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1946eda1-6a91-485f-a463-60b9d7ede676" name="Default Changelist" comment="" />
+      <created>1612539595071</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1612539595071</updated>
+      <workItem from="1612539596203" duration="6912000" />
+      <workItem from="1612560576299" duration="18898000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
