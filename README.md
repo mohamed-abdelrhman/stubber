@@ -25,19 +25,19 @@ npm i @mohamed-abdelrhman/stubber
 ```
 
 ## Usage
-#####create all module files:
+create all module files:
 ```sh
 stubber -g module-name -A
 ```
-#####create all basic module files:
+create all basic module files:
 ```sh
 stubber -g module-name -B
 ```
-#####create new input file for graphql:
+create new input file for graphql:
 ```sh
 stubber -g module-name -i input-name
 ```
-#####create all type file for graphql response :
+create all type file for graphql response :
 ```sh
 stubber -g module-name -t type-name
 ```
