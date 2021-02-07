@@ -8,7 +8,10 @@ let createFolder = function(folderName) {
 };
 
 //stub path
-let stubPath = function (type){
+let stubPath = function (type,crud){
+  if (crud){
+    return __dirname+'/stubs/crud/Dummy.'+type+'.stub'
+  }
   return __dirname+'/stubs/Dummy.'+type+'.stub'
 }
 
@@ -18,8 +21,8 @@ let filePath = function (type, folderName,fileName,subFolder='',){
 }
 
 // copy files.
-let copyStub = async function (type,filePath){
-  fs.copyFile(stubPath(type), filePath, (err) => {
+let copyStub = async function (type,filePath,crud){
+  fs.copyFile(stubPath(type,crud), filePath, (err) => {
     if (err) throw err;
   });
 }
@@ -83,11 +86,14 @@ const cli = function () {
   var yargs = require('yargs')
       .usage('Usage: $0 [command] [options]')
       .example('$0 g test-module -A', ' :generates all modules files ')
-      .example('$0 g test-module -B', ' :generates basic module files ')
+      .example('$0 g test-module -A -f', ' :generates all modules files  with crud operation')
       .example('$0 g test-module -e entity-name', ' :generate entity ')
       .example('$0 g test-module -s service-name', ' :generates service file')
+      .example('$0 g test-module -s service-name -f', ' :generates service file with crud operation')
       .example('$0 g test-module -r repository-name', ' :generates repository file ')
+      .example('$0 g test-module -r repository-name -f', ' :generates repository file with crud operation')
       .example('$0 g test-module -z resolver-name', ' :generates resolver file ')
+      .example('$0 g test-module -z resolver-name -f', ' :generates resolver file  with crud operation')
       .example('$0 g test-module -t type-name', ' :generates type file ')
       .example('$0 g test-module -i input-name', ' :generates input file')
       .alias('g', 'module_name')
@@ -140,44 +146,46 @@ const cli = function () {
   createFolder('src/models/'+folderName)
 
   //create module
+  let crud = false;
+  argv.f?crud=true:false;
   if(argv.A){
     let fileName = (argv.module_name).toLowerCase();
     createFile(moduleName,folderName,fileName,fileTypes.module)
-    createFile(moduleName,folderName,fileName,fileTypes.service)
-    createFile(moduleName,folderName,fileName,fileTypes.repository)
-    createFile(moduleName,folderName,fileName,fileTypes.resolver)
-    createFile(moduleName,folderName,fileName,fileTypes.entity,'entities')
-    createFile(moduleName,folderName,fileName,fileTypes.type,'types')
+    createFile(moduleName,folderName,fileName,fileTypes.service,crud)
+    createFile(moduleName,folderName,fileName,fileTypes.repository,crud)
+    createFile(moduleName,folderName,fileName,fileTypes.resolver,crud)
+    createFile(moduleName,folderName,fileName,fileTypes.entity,false,'entities')
+    createFile(moduleName,folderName,fileName,fileTypes.type,false,'types')
 
     //generate createDummy
     createInputName= 'create-'+fileName
-    createFile(namePatternEnforce(createInputName),folderName,createInputName,fileTypes.input,'inputs')
+    createFile(namePatternEnforce(createInputName),folderName,createInputName,fileTypes.input,false,'inputs')
     updateInputName= 'update-'+fileName
-    createFile(namePatternEnforce(updateInputName),folderName,updateInputName,fileTypes.input,'inputs')
+    createFile(namePatternEnforce(updateInputName),folderName,updateInputName,fileTypes.input,false,'inputs')
     getInputName= 'get-'+fileName
-    createFile(namePatternEnforce(getInputName),folderName,getInputName,fileTypes.input,'inputs')
+    createFile(namePatternEnforce(getInputName),folderName,getInputName,fileTypes.input,false,'inputs')
     deleteInputName= 'delete-'+fileName
-    createFile(namePatternEnforce(deleteInputName),folderName,deleteInputName,fileTypes.input,'inputs')
+    createFile(namePatternEnforce(deleteInputName),folderName,deleteInputName,fileTypes.input,false,'inputs')
   }else if (argv.i){
     let fileName = (argv.i).toLowerCase()
     moduleName=namePatternEnforce(fileName)
-    createFile(moduleName,folderName,fileName,fileTypes.input,'inputs')
+    createFile(moduleName,folderName,fileName,fileTypes.input,false,'inputs')
   }else if (argv.t){
     let fileName = (argv.t).toLowerCase()
     moduleName=namePatternEnforce(fileName)
-    createFile(moduleName,folderName,fileName,fileTypes.type,'types')
+    createFile(moduleName,folderName,fileName,fileTypes.type,false,'types')
   }else if (argv.s){
     let fileName = (argv.s).toLowerCase()
     moduleName=namePatternEnforce(fileName)
-    createFile(moduleName,folderName,fileName,fileTypes.service)
+    createFile(moduleName,folderName,fileName,fileTypes.service,crud)
   }else if (argv.r){
     let fileName = (argv.r).toLowerCase()
     moduleName=namePatternEnforce(fileName)
-    createFile(moduleName,folderName,fileName,fileTypes.repository)
+    createFile(moduleName,folderName,fileName,fileTypes.repository,crud)
   }else if (argv.z){
     let fileName = (argv.z).toLowerCase()
     moduleName=namePatternEnforce(fileName)
-    createFile(moduleName,folderName,fileName,fileTypes.resolver)
+    createFile(moduleName,folderName,fileName,fileTypes.resolver,crud)
   }
   else if (argv.e){
     let fileName = (argv.e).toLowerCase()
@@ -186,13 +194,13 @@ const cli = function () {
   }
 };
 
-let createFile= function (moduleName,folderName, fileName,type,subFolder=0){
+let createFile= function (moduleName,folderName, fileName,type,crud,subFolder=0){
   let file =filePath(type,folderName,fileName)
   if (subFolder){
     createFolder('src/models/'+folderName+'/'+subFolder)
     file =filePath(type,folderName,fileName,subFolder+'/')
   }
-  copyStub(type, file).then(r =>{
+  copyStub(type, file,crud).then(r =>{
     replaceDummyData(file,moduleName,fileName)
     console.log(logColors[type],fileName+'.'+type+'.ts created !')
   })

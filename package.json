@@ -1,6 +1,6 @@
 {
   "name": "@mohamed-abdelrhman/stubber",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "modular generator for nestjs",
   "repository": {
     "type": "git",

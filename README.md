@@ -37,6 +37,12 @@ create all type file for graphql response :
 ```sh
 stubber -g module-name -t type-name
 ``` 
+add f flag for crud operations:
+```sh
+stubber -g module-name -A type-name -f
+stubber -g module-name -s type-name -f
+stubber -g module-name -r type-name -f
+``` 
 ### What files does stubber generates
 it creates all the below files and the imports between them
 ```sh
