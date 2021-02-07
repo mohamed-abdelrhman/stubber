@@ -2,6 +2,9 @@
 <p>
   <a href="https://www.npmjs.com/package/@mohamed-abdelrhman/stubber" target="_blank">
     <img alt="Version" src="https://img.shields.io/npm/v/@mohamed-abdelrhman/stubber.svg">
+  </a>  
+  <a href="https://www.npmjs.com/package/@mohamed-abdelrhman/stubber" target="_blank">
+    <img alt="Downloads" src="https://img.shields.io/npm/dt/@mohamed-abdelrhman/stubber?style=flat-square">
   </a>
   <a href="https://github.com/mohamed-abdelrhman/stubber#readme" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
@@ -56,7 +59,9 @@ inputs/input-name.input.ts
 ``` 
 
 ## Todo List
-```sh
+```sh 
+Support different module paths
+Support different project architectures and patterns  like CQRS
 Create command for each possible file that might be created by the user
 Option for basic crude operations with the A or B generation
 support sequelize
