@@ -1,7 +1,32 @@
 import { EntityRepository, Repository } from 'typeorm';
 import { Dummy } from './entities/fileName.entity';
+import { CreateDummyInput } from './inputs/create-fileName.input';
+import { PaginationOptions } from '../../common/pagination/pagination-options.args';
 
 @EntityRepository(Dummy)
 export class DummyRepository extends Repository<Dummy> {
+  dummy(dummyId: string): Promise<Dummy> {
+    return this.findOne({ dummyId });
+  }
 
+  dummys(paginationOptions: PaginationOptions): Promise<Dummy[]> {
+    const skip = (paginationOptions.page - 1) * paginationOptions.limit;
+    return this.find({
+      take: paginationOptions.limit,
+      skip,
+    });
+  }
+
+  async createDummy(dummyInput: CreateDummyInput): Promise<Dummy> {
+    const dummyObject = this.create();
+    return dummyObject.save();
+  }
+
+  async deleteDummy(dummy: Dummy): Promise<Dummy> {
+    return await dummy.remove();
+  }
+
+  async updateDummy(ageObject: Dummy): Promise<Dummy> {
+    return ageObject.save();
+  }
 }

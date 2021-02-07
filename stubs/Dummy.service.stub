@@ -1,7 +1,45 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { DummyRepository } from './fileName.repository';
+import { PaginationOptions } from '../../common/pagination/pagination-options.args';
+import { Dummy } from './entities/fileName.entity';
+import { SuccessPayload } from '../../common/helpers/payloads/success.payload';
+import { CreateDummyInput } from './inputs/create-fileName.input';
+import { UpdateDummyInput } from './inputs/update-fileName.input';
 
 @Injectable()
 export class DummyService {
   constructor(private dummyRepository: DummyRepository) {}
+
+  async dummy(dummyId: string): Promise<Dummy> {
+    const dummy = await this.dummyRepository.dummy(dummyId);
+    if (!dummy) throw new NotFoundException();
+    return dummy;
+  }
+
+  dummys(paginationOptions: PaginationOptions): Promise<Dummy[]> {
+    return this.dummyRepository.dummys(paginationOptions);
+  }
+
+  async createDummy(dummyInput: CreateDummyInput): Promise<Dummy> {
+    return await this.dummyRepository.createDummy(dummyInput);
+  }
+
+  async updateDummy(updateDummyInput: UpdateDummyInput): Promise<Dummy> {
+    const dummy: Dummy = await this.dummyRepository.dummy(updateDummyInput.dummyId);
+    if (!dummy) throw new NotFoundException();
+    delete updateDummyInput.dummyId;
+    for (const key in updateDummyInput) {
+      dummy[key] = updateDummyInput[key];
+    }
+    return this.dummyRepository.updateDummy(dummy);
+  }
+
+  async deleteDummy(dummyId: string): Promise<SuccessPayload> {
+    const dummy: Dummy = await this.dummyRepository.dummy(dummyId);
+    if (!dummy) throw new NotFoundException();
+    await this.dummyRepository.deleteDummy(dummy);
+    return {
+      message: 'dummy deleted',
+    };
+  }
 }

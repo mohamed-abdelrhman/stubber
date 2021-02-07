@@ -55,16 +55,14 @@ inputs/input-name.input.ts
 ``` 
 
 ## Todo List
-<li>Create command for each possible file that might be created by the user</li>
-<li>Option for basic crude operations with the files generation</li>
-<li>Support different native connections and different ORMs rather than typeorm like mongoose and sequelize</li>
-<li>Support different project architectures and patterns  like CQRS</li>
-
-## Author
-
-👤 **Mohamed Abdelrhman <mohamed95abdelrhman@gmail.com>**
-
-* Github: [@mohamed-abdelrhman](https://github.com/mohamed-abdelrhman)
+```sh
+Create command for each possible file that might be created by the user
+Option for basic crude operations with the A or B generation
+support sequelize
+support mongoose
+Support native connection
+Support different project architectures and patterns  like CQRS
+``` 
 
 ## 🤝 Contributing
 
