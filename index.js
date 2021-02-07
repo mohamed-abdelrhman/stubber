@@ -98,9 +98,9 @@ const cli = function () {
       .nargs('A', 0)
       .describe('A', 'generate All files')
 
-      .alias('B', 'basic files')
-      .nargs('B', 0)
-      .describe('B', 'generate Basic files')
+      .alias('f', 'full-crude')
+      .nargs('f', 0)
+      .describe('f', 'include full crude operation')
 
       .alias('e', 'entity')
       .nargs('e', 1)
@@ -138,8 +138,8 @@ const cli = function () {
   createFolder('src')
   createFolder('src/models')
   createFolder('src/models/'+folderName)
-  //create module
 
+  //create module
   if(argv.A){
     let fileName = (argv.module_name).toLowerCase();
     createFile(moduleName,folderName,fileName,fileTypes.module)
@@ -158,13 +158,6 @@ const cli = function () {
     createFile(namePatternEnforce(getInputName),folderName,getInputName,fileTypes.input,'inputs')
     deleteInputName= 'delete-'+fileName
     createFile(namePatternEnforce(deleteInputName),folderName,deleteInputName,fileTypes.input,'inputs')
-  }else if(argv.B){
-    let fileName = (argv.module_name).toLowerCase();
-    createFile(moduleName,folderName,fileName,fileTypes.module)
-    createFile(moduleName,folderName,fileName,fileTypes.service)
-    createFile(moduleName,folderName,fileName,fileTypes.repository)
-    createFile(moduleName,folderName,fileName,fileTypes.resolver)
-    createFile(moduleName,folderName,fileName,fileTypes.entity,'entities')
   }else if (argv.i){
     let fileName = (argv.i).toLowerCase()
     moduleName=namePatternEnforce(fileName)

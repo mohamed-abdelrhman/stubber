@@ -1,0 +1,48 @@
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { DummyService } from './fileName.service';
+import { DummyType } from './types/fileName.type';
+import { SuccessPayload } from '../../common/helpers/payloads/success.payload';
+import { PaginationOptions } from '../../common/pagination/pagination-options.args';
+import { Dummy } from './entities/fileName.entity';
+import { GetDummyInput } from './inputs/get-fileName.input';
+import { CreateDummyInput } from './inputs/create-fileName.input';
+import { DeleteDummyInput } from './inputs/delete-fileName.input';
+import { UpdateDummyInput } from './inputs/update-fileName.input';
+
+@Resolver((of) => DummyType)
+export class DummyResolver {
+  constructor(private dummyService: DummyService) {}
+
+  @Query((returns) => DummyType)
+  dummy(@Args('getDummyInput') getDummyInput: GetDummyInput): Promise<Dummy> {
+    return this.dummyService.dummy(getDummyInput.dummyId);
+  }
+
+  @Query((returns) => [DummyType])
+  dummys(
+    @Args('paginationOptions') paginationOptions: PaginationOptions,
+  ): Promise<Dummy[]> {
+    return this.dummyService.dummys(paginationOptions);
+  }
+
+  @Mutation(() => DummyType)
+  createDummy(
+    @Args('createDummyInput') createDummyInput: CreateDummyInput,
+  ): Promise<Dummy> {
+    return this.dummyService.createDummy(createDummyInput);
+  }
+
+   @Mutation((returns) => DummyType)
+    updateDummyDetails(
+      @Args('dummyInput') dummyInput: UpdateDummyInput,
+    ): Promise<Dummy> {
+      return this.dummyService.updateDummy(dummyInput);
+    }
+
+  @Mutation((returns) => SuccessPayload)
+  deleteFavourite(
+    @Args('deleteDummyInput') deleteDummyInput: DeleteDummyInput,
+  ): Promise<SuccessPayload> {
+    return this.dummyService.deleteDummy(deleteDummyInput.dummyId);
+  }
+}

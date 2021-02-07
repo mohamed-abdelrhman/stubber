@@ -29,10 +29,6 @@ create all module files:
 ```sh
 stubber -g module-name -A
 ```
-create all basic module files:
-```sh
-stubber -g module-name -B
-```
 create new input file for graphql:
 ```sh
 stubber -g module-name -i input-name
