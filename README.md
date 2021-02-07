@@ -32,6 +32,18 @@ create all module files:
 ```sh
 stubber -g module-name -A
 ```
+create new service:
+```sh
+stubber -g module-name -s service-name
+```
+create a new repository:
+```sh
+stubber -g module-name -r repository-name
+```
+create a new repository:
+```sh
+stubber -g module-name -z resolver-name
+```
 create new input file for graphql:
 ```sh
 stubber -g module-name -i input-name
@@ -42,9 +54,10 @@ stubber -g module-name -t type-name
 ``` 
 add f flag for crud operations:
 ```sh
-stubber -g module-name -A type-name -f
-stubber -g module-name -s type-name -f
-stubber -g module-name -r type-name -f
+stubber -g module-name -A -f
+stubber -g module-name -s service-name -f
+stubber -g module-name -r repository-name -f
+stubber -g module-name -z resolver-name -f
 ``` 
 ### What files does stubber generates
 it creates all the below files and the imports between them
