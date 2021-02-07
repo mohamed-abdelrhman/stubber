@@ -48,7 +48,6 @@ module-name.module.ts
 module-name.service.ts
 module-name.repository.ts
 module-name.resolver.ts
-module-name.resolver.ts
 entities/module-name.entitiy.ts
 types/type-name.type.ts
 inputs/input-name.input.ts
