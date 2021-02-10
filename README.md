@@ -18,7 +18,7 @@
 
 </p>
 
-> small package alternative for nestjs cli that creates a module files for you for those who use different project architecture different from the standard one introduced by nestjs hence can't use its cli.
+> small package alternative for nestjs cli that creates a module files with crud operation for you.
 
 
 ## Install
