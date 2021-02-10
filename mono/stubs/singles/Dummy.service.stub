@@ -1,0 +1,7 @@
+import { Injectable } from '@nestjs/common';
+import { DummyRepository } from './fileName.repository';
+
+@Injectable()
+export class DummyService {
+  constructor(private dummyRepository: DummyRepository) {}
+}
