@@ -1,4 +1,4 @@
 import { BaseEntity, Entity } from 'typeorm';
 
-@Entity('dummy')
+@Entity()
 export class Dummy extends BaseEntity {}

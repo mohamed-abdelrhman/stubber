@@ -1,8 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { DummyRepository } from './fileName.repository';
-import { PaginationOptions } from '../../common/pagination/pagination-options.args';
 import { Dummy } from './entities/fileName.entity';
-import { SuccessPayload } from '../../common/helpers/payloads/success.payload';
 import { CreateDummyInput } from './inputs/create-fileName.input';
 import { UpdateDummyInput } from './inputs/update-fileName.input';
 
@@ -16,8 +14,8 @@ export class DummyService {
     return dummy;
   }
 
-  dummys(paginationOptions: PaginationOptions): Promise<Dummy[]> {
-    return this.dummyRepository.dummys(paginationOptions);
+  dummys(): Promise<Dummy[]> {
+    return this.dummyRepository.dummys();
   }
 
   async createDummy(dummyInput: CreateDummyInput): Promise<Dummy> {
@@ -34,12 +32,9 @@ export class DummyService {
     return this.dummyRepository.updateDummy(dummy);
   }
 
-  async deleteDummy(dummyId: string): Promise<SuccessPayload> {
+  async deleteDummy(dummyId: string) {
     const dummy: Dummy = await this.dummyRepository.dummy(dummyId);
     if (!dummy) throw new NotFoundException();
     await this.dummyRepository.deleteDummy(dummy);
-    return {
-      message: 'dummy deleted',
-    };
   }
 }

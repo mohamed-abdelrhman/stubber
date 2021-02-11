@@ -1,8 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { DummyService } from './fileName.service';
 import { DummyType } from './types/fileName.type';
-import { SuccessPayload } from '../../common/helpers/payloads/success.payload';
-import { PaginationOptions } from '../../common/pagination/pagination-options.args';
 import { Dummy } from './entities/fileName.entity';
 import { GetDummyInput } from './inputs/get-fileName.input';
 import { CreateDummyInput } from './inputs/create-fileName.input';
@@ -19,10 +17,8 @@ export class DummyResolver {
   }
 
   @Query((returns) => [DummyType])
-  dummys(
-    @Args('paginationOptions') paginationOptions: PaginationOptions,
-  ): Promise<Dummy[]> {
-    return this.dummyService.dummys(paginationOptions);
+  dummys(): Promise<Dummy[]> {
+    return this.dummyService.dummys();
   }
 
   @Mutation(() => DummyType)
@@ -39,10 +35,10 @@ export class DummyResolver {
     return this.dummyService.updateDummy(dummyInput);
   }
 
-  @Mutation((returns) => SuccessPayload)
+  @Mutation()
   deleteFavourite(
     @Args('deleteDummyInput') deleteDummyInput: DeleteDummyInput,
-  ): Promise<SuccessPayload> {
+  ) {
     return this.dummyService.deleteDummy(deleteDummyInput.dummyId);
   }
 }
