@@ -1,7 +1,40 @@
 import { Controller, Logger } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
-import { DummyService } from './category.service';
+import { DummyService } from './fileName.service';
+import { CreateDummyDto } from './dto/create-fileName.dto';
+import { UpdateDummyDto } from './dto/update-fileName.dto';
+import { GetDummyDto } from './dto/get-fileName.dto';
+import { DeleteDummyDto } from './dto/delete-fileName.dto';
+
 @Controller()
 export class DummyController {
   constructor(private dummyService: DummyService) {}
+  // define message pattern for this service
+  @MessagePattern('createDummy')
+  async createDummy(createDummyDto: CreateDummyDto) {
+    return this.dummyService.createDummy(createDummyDto);
+  }
+
+  // define message pattern for this service
+  @MessagePattern('updateDummy')
+  async updateDummy(updateDummy: UpdateDummyDto) {
+    return this.dummyService.updateDummy(updateDummy);
+  }
+
+  // define message pattern for this service
+  @MessagePattern('dummy')
+  async dummy(getDummyDto: GetDummyDto) {
+    return this.dummyService.dummy(getDummyDto.dummy_id);
+  }
+    // define message pattern for this service
+    @MessagePattern('dummys')
+    async dummys() {
+      return this.dummyService.dummys();
+    }
+
+  // define message pattern for this service
+  @MessagePattern('deleteDummy')
+  async deleteDummy(deleteDummyDto: DeleteDummyDto) {
+    return this.dummyService.deleteDummy(deleteDummyDto.dummy_id);
+  }
 }

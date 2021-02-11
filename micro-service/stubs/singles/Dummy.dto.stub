@@ -1,11 +1,1 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CategoryRepository } from './category.repository';
-import { Category } from './entities/fileName.entity';
-import { PaginationOptions } from '../../common/pagination/pagination-options.args';
-import { UpdateCategoryDto } from './dto/update-fileName.dto';
-import { CreateCategoryDto } from './dto/create-fileName.dto';
-
-@Injectable()
-export class DummyService {
-  constructor(private dummyRepository: DummyRepository) {}
-}
+export interface DummyDto {}

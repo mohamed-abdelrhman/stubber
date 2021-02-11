@@ -1,12 +1,7 @@
-//create src directory
-let fs = require('fs');
 const {createFolder} = require("./helpers/files.helper");
 const {ConvertFileNameToModuleName} = require("./helpers/string.helper");
 const {mono} = require("./mono/mono");
-
-
-//name pattern enforcement
-
+const {microService} = require("./micro-service/micro-service");
 
 const logColors={
   'module':'\x1b[31m',
@@ -17,7 +12,6 @@ const logColors={
   'entity':'\x1b[34m',
   'interface':'\x1b[36',
   'input':'\x1b[37m',
-
 }
 
 
@@ -27,6 +21,7 @@ const logColors={
 const cli = async function () {
   var yargs = require('yargs')
       .usage('Usage: $0 [command] [options]')
+      //mono examples
       .example('$0 g test-module -A', ' :generates all modules files ')
       .example('$0 g test-module -A -f', ' :generates all modules files  with crud operation')
       .example('$0 g test-module -e entity-name', ' :generate entity ')
@@ -38,6 +33,15 @@ const cli = async function () {
       .example('$0 g test-module -z resolver-name -f', ' :generates resolver file  with crud operation')
       .example('$0 g test-module -t type-name', ' :generates type file ')
       .example('$0 g test-module -i input-name', ' :generates input file')
+      .example('$0 g test-module -A --micro', ' :generates all files for microservice')
+      .example('$0 g test-module -A --micro -f', ' :generates all files for microservice with crud operations')
+      .example('$0 g test-module -c controller-name --micro', ' :generates controller')
+      .example('$0 g test-module -c controller-name --micro -f', ' :generates all controller with crud')
+      .example('$0 g test-module -s service-name --micro', ' :generates service')
+      .example('$0 g test-module -s service-name --micro -f', ' :generates service with crud')
+      .example('$0 g test-module -r repo-name --micro', ' :generates repo')
+      .example('$0 g test-module -r repo-name --micro -f', ' :generates repo with crud')
+      .example('$0 g test-module -d dto-name --micro', ' :generates dto file')
       .alias('g', 'module_name')
       .nargs('g', 1)
       .describe('g', 'generate module')
@@ -74,50 +78,22 @@ const cli = async function () {
       .nargs('t', 1)
       .describe('t', 'generate type')
 
+      .alias('c', 'controller')
+      .nargs('c', 1)
+      .describe('c', 'generate controller')
+      .alias('d', 'dto')
+      .nargs('d', 1)
+      .describe('d', 'generate dto')
+
       .demandOption(['g'])
       .help('h')
       .alias('h', 'help')
 
   let argv = yargs.argv;
-  let moduleName = ConvertFileNameToModuleName((argv.module_name).toLowerCase())
-  let folderName = (argv.module_name).toLowerCase()
-  let fileName = (argv.module_name).toLowerCase()
-
-  console.log(argv)
-  //create Main folder
-  await createFolder(folderName)
-  let crud=false;
-  if (argv.f) crud=true;
-  if (argv.A){
-    await mono.createAllMonoFiles(moduleName, folderName, fileName,crud)
-  } else if (argv.i && typeof argv.i =='string'){
-    let fileName = (argv.i).toLowerCase()
-    moduleName=ConvertFileNameToModuleName(fileName)
-    await mono.createInputFile(moduleName,folderName,fileName)
-  }else if (argv.t&& typeof argv.t =='string'){
-    let fileName = (argv.t).toLowerCase()
-    moduleName=ConvertFileNameToModuleName(fileName)
-    await mono.createTypeFile(moduleName,folderName,fileName)
-
-  }else if (argv.s && typeof argv.s =='string'){
-    let fileName = (argv.s).toLowerCase()
-    moduleName=ConvertFileNameToModuleName(fileName)
-    await mono.createServiceFile(moduleName,folderName,fileName, crud)
-
-  }else if (argv.r&& typeof argv.s =='string'){
-    let fileName = (argv.r).toLowerCase()
-    moduleName=ConvertFileNameToModuleName(fileName)
-    await mono.createRepositoryFile(moduleName,folderName,fileName, crud)
-
-  }else if (argv.z && typeof argv.z =='string'){
-    let fileName = (argv.z).toLowerCase()
-    moduleName=ConvertFileNameToModuleName(fileName)
-    await mono.createResolverFile(moduleName,folderName,fileName, crud)
-  }
-  else if (argv.e && typeof argv.e =='string'){
-    let fileName = (argv.e).toLowerCase()
-    moduleName=ConvertFileNameToModuleName(fileName)
-    await mono.createEntityFile(moduleName,folderName,fileName)
+  if (argv.micro){
+    await microService.call(argv)
+  }else {
+    await mono.call(argv)
   }
 }
 

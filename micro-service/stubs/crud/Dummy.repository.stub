@@ -1,7 +1,6 @@
 import { Connection, Repository } from 'typeorm';
-import { Category } from './entities/filename.entity';
-import { PaginationOptions } from '../../common/pagination/pagination-options.args';
-import { CreateCategoryDto } from './dto/create-fileName.dto';
+import { Dummy } from './entities/fileName.entity';
+import { CreateDummyDto } from './dto/create-fileName.dto';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
@@ -10,5 +9,24 @@ export class DummyRepository {
 
   constructor(private connection: Connection) {
     this.repo = connection.getRepository(Dummy);
+  }
+  dummy(dummyId: string): Promise<Dummy> {
+    return this.repo.findOne(dummy_id);
+  }
+  dummys(): Promise<Dummy[]> {
+    return this.repo.find();
+  }
+
+  createDummy(createDummyDto: CreateDummyDto): Promise<Dummy> {
+    const dummy = this.repo.create(createDummyDto);
+    return dummy.save();
+  }
+
+  updateDummy(dummy: Dummy): Promise<Dummy> {
+    return dummy.save();
+  }
+
+  deleteDummy(dummy: Dummy) {
+    return dummy.remove();
   }
 }

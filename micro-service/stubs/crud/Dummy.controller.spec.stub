@@ -1,12 +1,12 @@
 import { Test } from '@nestjs/testing';
-import { Dog } from './entities/dog.entity';
-import { DogController } from './dog.controller';
-import { DogModule } from './dog.module';
+import { Dummy } from './entities/fileName.entity';
+import { DummyController } from './fileName.controller';
+import { DummyModule } from './fileName.module';
 import { INestApplication } from '@nestjs/common';
 import { getConnection } from 'typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-describe('DogModuleIntegration', () => {
+describe('DummyModuleIntegration', () => {
   let app: INestApplication;
   let controller;
   let connection;
@@ -14,7 +14,7 @@ describe('DogModuleIntegration', () => {
   beforeAll(async () => {
     const module = await Test.createTestingModule({
       imports: [
-        DogModule,
+        DummyModule,
         // PostgresDatabaseProviderModule,
         TypeOrmModule.forRoot({
           type: 'postgres',
@@ -23,27 +23,27 @@ describe('DogModuleIntegration', () => {
           username: 'postgres',
           password: '123456',
           database: 'e2e_test',
-          entities: [Dog],
+          entities: [Dummy],
           synchronize: true,
         }),
       ],
       providers: [],
-      controllers: [DogController],
+      controllers: [DummyController],
     }).compile();
     app = module.createNestApplication();
     await app.init();
-    controller = module.get<DogController>(DogController);
+    controller = module.get<DummyController>(DummyController);
     connection = getConnection();
   });
 
   afterEach(async () => {
-    await connection.createQueryBuilder().delete().from(Dog).execute();
+    await connection.createQueryBuilder().delete().from(Dummy).execute();
   });
   afterAll(async () => {
     await app.close();
   });
 
-  describe('dog controller', () => {
+  describe('dummy controller', () => {
     it('should be defined', async () => {
       expect(controller).toBeDefined();
     });

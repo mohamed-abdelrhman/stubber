@@ -1,7 +1,5 @@
 import { Connection, Repository } from 'typeorm';
-import { Category } from './entities/filename.entity';
-import { PaginationOptions } from '../../common/pagination/pagination-options.args';
-import { CreateCategoryDto } from './dto/create-fileName.dto';
+import { Dummy } from './entities/fileName.entity';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
