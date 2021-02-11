@@ -1,0 +1,14 @@
+import { Connection, Repository } from 'typeorm';
+import { Category } from './entities/filename.entity';
+import { PaginationOptions } from '../../common/pagination/pagination-options.args';
+import { CreateCategoryDto } from './dto/create-fileName.dto';
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class DummyRepository {
+  repo: Repository<Dummy>;
+
+  constructor(private connection: Connection) {
+    this.repo = connection.getRepository(Dummy);
+  }
+}

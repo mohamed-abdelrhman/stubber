@@ -1,0 +1,7 @@
+import { Controller, Logger } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
+import { DummyService } from './category.service';
+@Controller()
+export class DummyController {
+  constructor(private dummyService: DummyService) {}
+}
