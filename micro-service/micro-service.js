@@ -12,47 +12,21 @@ const fileTypes={
 
 
 const call = async function (argv) {
-    let moduleName = ConvertFileNameToModuleName((argv.module_name).toLowerCase())
-    let folderName = (argv.module_name).toLowerCase()
-    let fileName = (argv.module_name).toLowerCase()
+    let moduleName = ConvertFileNameToModuleName((argv.moduleName).toLowerCase())
+    let folderName = (argv.moduleName).toLowerCase()
+    let fileName = (argv.moduleName).toLowerCase()
     //create Main folder
     await createFolder(folderName)
-    let crud=false;
+    let crud=argv.crud;
     let spec=false;
-    if (argv.f) crud=true;
     if (argv.spec) spec=true;
-    console.log(spec)
-    if (argv.A){
         createModuleFile(moduleName,folderName,fileName,crud)
         createServiceFile(moduleName,folderName,fileName,crud,spec)
         createRepositoryFile(moduleName,folderName,fileName,crud)
         createControllerFile(moduleName,folderName,fileName,crud,spec)
         createEntityFile(moduleName,folderName,fileName,crud)
         createDtoFile(moduleName,folderName,fileName,crud)
-    }else if (argv.d&& typeof argv.d =='string'){
-        let fileName = (argv.d).toLowerCase()
-        moduleName=ConvertFileNameToModuleName(fileName)
-        await createDtoFile(moduleName,folderName,fileName,crud)
-    }else if (argv.s && typeof argv.s =='string'){
-        let fileName = (argv.s).toLowerCase()
-        moduleName=ConvertFileNameToModuleName(fileName)
-        await createServiceFile(moduleName,folderName,fileName, crud)
 
-    }else if (argv.r&& typeof argv.s =='string'){
-        let fileName = (argv.r).toLowerCase()
-        moduleName=ConvertFileNameToModuleName(fileName)
-        await createRepositoryFile(moduleName,folderName,fileName, crud)
-
-    }else if (argv.c && typeof argv.c =='string'){
-        let fileName = (argv.c).toLowerCase()
-        moduleName=ConvertFileNameToModuleName(fileName)
-        await createControllerFile(moduleName,folderName,fileName, crud)
-    }
-    else if (argv.e && typeof argv.e =='string'){
-        let fileName = (argv.e).toLowerCase()
-        moduleName=ConvertFileNameToModuleName(fileName)
-        await createEntityFile(moduleName,folderName,fileName)
-    }
 
 
 }

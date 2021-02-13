@@ -18,69 +18,39 @@
 
 </p>
 
-> small package alternative for nestjs cli that creates a module files with crud operation for you.
+> small package alternative for nestjs resource generator.
 
+## prerequisite
+
+```sh
+till this moment stupper only support
+Typeorm
+Graphql
+Microservice (non http)
+you are very welcome to collabrate here.
+```
 
 ## Install
-
 ```sh
 npm i @mohamed-abdelrhman/stubber -g
 ```
 
 ## Usage
-create all module files:
 ```sh
-stubber -g module-name -A
+stubber
 ```
-create new service:
-```sh
-stubber -g module-name -s service-name
-```
-create a new repository:
-```sh
-stubber -g module-name -r repository-name
-```
-create a new repository:
-```sh
-stubber -g module-name -z resolver-name
-```
-create new input file for graphql:
-```sh
-stubber -g module-name -i input-name
-```
-create all type file for graphql response :
-```sh
-stubber -g module-name -t type-name
-``` 
-add f flag for crud operations:
-```sh
-stubber -g module-name -A -f
-stubber -g module-name -s service-name -f
-stubber -g module-name -r repository-name -f
-stubber -g module-name -z resolver-name -f
-``` 
-### What files does stubber generates
-it creates all the below files and the imports between them
-```sh
-module-name.module.ts
-module-name.service.ts
-module-name.repository.ts
-module-name.resolver.ts
-entities/module-name.entitiy.ts
-types/type-name.type.ts
-inputs/input-name.input.ts
-``` 
+if it doesn't work try `sudo npm link`
+then try `stubber` again
+
+
 
 ## Todo List
 ```sh 
-Support different module paths
-Support different project architectures and patterns  like CQRS
-Create command for each possible file that might be created by the user
-Option for basic crude operations with the A or B generation
+Support  CQRS
+support REST API
 support sequelize
 support mongoose
 Support native connection
-Support different project architectures and patterns  like CQRS
 ``` 
 
 ## 🤝 Contributing

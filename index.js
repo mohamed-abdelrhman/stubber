@@ -1,104 +1,112 @@
-const {createFolder} = require("./helpers/files.helper");
-const {ConvertFileNameToModuleName} = require("./helpers/string.helper");
 const {mono} = require("./mono/mono");
 const {microService} = require("./micro-service/micro-service");
 
-const logColors={
-  'module':'\x1b[31m',
-  'repository':'\x1b[34m',
-  'service':'\x1b[33m',
-  'resolver':'\x1b[32m',
-  'type':'\x1b[35m',
-  'entity':'\x1b[34m',
-  'interface':'\x1b[36',
-  'input':'\x1b[37m',
+
+const cli = require('clui')
+const shell = require('shelljs')
+const Spinner = cli.Spinner
+const clear = require('clear')
+const spawn = require('child_process').spawn
+const chalk = require('chalk')
+const inquirer = require('inquirer')
+const figlet = require('figlet')
+const config = require('./config')
+
+const installHelper = (command, onSuccess, spinner) => {
+  return new Promise((resolve, reject) => {
+    var process = spawn(command, { shell: true })
+    spinner.start()
+    process.on('exit', () => {
+      spinner.stop()
+      onSuccess()
+      resolve()
+    })
+  })
+}
+const installPrettier = async () => {
+  const spinner = new Spinner('Installing Prettier...')
+  return installHelper(
+    'yarn add -D prettier',
+    () => console.log(chalk.green('Prettier has been installed! 👍')),
+    spinner
+  )
+}
+const askInfo = () => {
+  const questions = [
+    {
+      name: 'moduleName',
+      type: 'input',
+      message: ' What name would you like to use for this resource ?',
+      filter: function(val) {
+        return val ;
+      },
+    },
+    {
+      name: 'orm',
+      type: 'list',
+      choices: ['TypeOrm'],
+      message: 'Please, Select the Orm package that you are using?',
+      filter: function(val) {
+        return val ;
+      },
+    },
+    {
+      name: 'transportLayer',
+      type: 'list',
+      choices: ['Graphql', 'Microservice',],
+      message: 'What transport layer do you use?',
+      filter: function(val) {
+        return val ;
+      },
+    },
+    {
+      name: 'crud',
+      type: 'confirm',
+      message: ' Would you like to generate CRUD entry points?',
+      filter: function(val) {
+        return val ;
+      },
+    },
+    {
+      name: 'spec',
+      type: 'confirm',
+      message: ' Would you like to generate .spec Files?',
+      filter: function(val) {
+        return val ;
+      },
+    },
+  ]
+  return inquirer.prompt(questions)
 }
 
+const init = async () => {
+  clear()
+  console.log(
+    chalk.green(
+      figlet.textSync('Stubber', {
+        horizontalLayout: 'full',
+      })
+    )
+  )
+}
+const success = () => {
+  // console.log(chalk.blue.bold(`Stubber Resource completed`))
+};
 
 
-
-
-const cli = async function () {
-  var yargs = require('yargs')
-      .usage('Usage: $0 [command] [options]')
-      //mono examples
-      .example('$0 g test-module -A', ' :generates all modules files ')
-      .example('$0 g test-module -A -f', ' :generates all modules files  with crud operation')
-      .example('$0 g test-module -e entity-name', ' :generate entity ')
-      .example('$0 g test-module -s service-name', ' :generates service file')
-      .example('$0 g test-module -s service-name -f', ' :generates service file with crud operation')
-      .example('$0 g test-module -r repository-name', ' :generates repository file ')
-      .example('$0 g test-module -r repository-name -f', ' :generates repository file with crud operation')
-      .example('$0 g test-module -z resolver-name', ' :generates resolver file ')
-      .example('$0 g test-module -z resolver-name -f', ' :generates resolver file  with crud operation')
-      .example('$0 g test-module -t type-name', ' :generates type file ')
-      .example('$0 g test-module -i input-name', ' :generates input file')
-      .example('$0 g test-module -A --micro', ' :generates all files for microservice')
-      .example('$0 g test-module -A --micro -f', ' :generates all files for microservice with crud operations')
-      .example('$0 g test-module -c controller-name --micro', ' :generates controller')
-      .example('$0 g test-module -c controller-name --micro -f', ' :generates all controller with crud')
-      .example('$0 g test-module -s service-name --micro', ' :generates service')
-      .example('$0 g test-module -s service-name --micro -f', ' :generates service with crud')
-      .example('$0 g test-module -r repo-name --micro', ' :generates repo')
-      .example('$0 g test-module -r repo-name --micro -f', ' :generates repo with crud')
-      .example('$0 g test-module -d dto-name --micro', ' :generates dto file')
-      .alias('g', 'module_name')
-      .nargs('g', 1)
-      .describe('g', 'generate module')
-
-      .alias('A', 'all-files')
-      .nargs('A', 0)
-      .describe('A', 'generate All files')
-
-      .alias('f', 'full-crude')
-      .nargs('f', 0)
-      .describe('f', 'include full crude operation')
-
-      .alias('e', 'entity')
-      .nargs('e', 1)
-      .describe('e', 'generate entity')
-
-      .alias('s', 'service')
-      .nargs('s', 1)
-      .describe('s', 'generate service')
-
-      .alias('r', 'repository')
-      .nargs('r', 1)
-      .describe('r', 'generate repository')
-
-      .alias('z', 'resolver')
-      .nargs('z', 1)
-      .describe('z', 'generate resolver')
-
-      .alias('i', 'input')
-      .nargs('i', 1)
-      .describe('i', 'generate Input')
-
-      .alias('t', 'type')
-      .nargs('t', 1)
-      .describe('t', 'generate type')
-
-      .alias('c', 'controller')
-      .nargs('c', 1)
-      .describe('c', 'generate controller')
-      .alias('d', 'dto')
-      .nargs('d', 1)
-      .describe('d', 'generate dto')
-
-      .demandOption(['g'])
-      .help('h')
-      .alias('h', 'help')
-
-  let argv = yargs.argv;
-  if (argv.micro){
-    await microService.call(argv)
-  }else {
-    await mono.call(argv)
+(async () => {
+  await init()
+  const answer = await askInfo()
+  const { transportLayer } = answer
+  if (transportLayer ==='Graphql' ) {
+    await mono.call(answer)
+  }else if (transportLayer ==='Microservice'){
+    await microService.call(answer)
   }
-}
+
+
+  success()
+})()
 
 
 
-
-
-exports.cli = cli;

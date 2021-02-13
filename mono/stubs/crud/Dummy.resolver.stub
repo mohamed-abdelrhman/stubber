@@ -13,7 +13,7 @@ export class DummyResolver {
 
   @Query((returns) => DummyType)
   dummy(@Args('getDummyInput') getDummyInput: GetDummyInput): Promise<Dummy> {
-    return this.dummyService.dummy(getDummyInput.dummyId);
+    return this.dummyService.dummy(getDummyInput.dummy_id);
   }
 
   @Query((returns) => [DummyType])
@@ -39,6 +39,6 @@ export class DummyResolver {
   deleteFavourite(
     @Args('deleteDummyInput') deleteDummyInput: DeleteDummyInput,
   ) {
-    return this.dummyService.deleteDummy(deleteDummyInput.dummyId);
+    return this.dummyService.deleteDummy(deleteDummyInput.dummy_id);
   }
 }

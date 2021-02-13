@@ -3,10 +3,12 @@ import { DummyService } from './fileName.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DummyRepository } from './fileName.repository';
 import { DummyResolver } from './fileName.resolver';
+import { Dummy } from './entities/fileName.entity';
+
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DummyRepository])],
-  providers: [DummyService, DummyResolver],
+  imports: [TypeOrmModule.forFeature([Dummy])],
+  providers: [DummyService, DummyResolver,DummyRepository],
   exports: [],
 })
 export class DummyModule {}

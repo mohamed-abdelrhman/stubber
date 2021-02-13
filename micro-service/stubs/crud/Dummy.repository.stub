@@ -10,7 +10,7 @@ export class DummyRepository {
   constructor(private connection: Connection) {
     this.repo = connection.getRepository(Dummy);
   }
-  dummy(dummyId: string): Promise<Dummy> {
+  dummy(dummy_id: string): Promise<Dummy> {
     return this.repo.findOne(dummy_id);
   }
   dummys(): Promise<Dummy[]> {

@@ -1,19 +1,24 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 import { Dummy } from './entities/fileName.entity';
 import { CreateDummyInput } from './inputs/create-fileName.input';
 
-@EntityRepository(Dummy)
-export class DummyRepository extends Repository<Dummy> {
-  dummy(dummyId: string): Promise<Dummy> {
-    return this.findOne({ dummyId });
+@Injectable()
+export class DummyRepository {
+  repo: Repository<Dummy>;
+  constructor(private connection: Connection) {
+    this.repo = connection.getRepository(Dummy);
+  }
+  dummy(dummy_id: string): Promise<Dummy> {
+    return this.repo.findOne({ dummy_id });
   }
 
   dummys(): Promise<Dummy[]> {
-    return this.find();
+    return this.repo.find();
   }
 
   async createDummy(dummyInput: CreateDummyInput): Promise<Dummy> {
-    const dummyObject = this.create();
+    const dummyObject = this.repo.create();
     return dummyObject.save();
   }
 
@@ -21,7 +26,7 @@ export class DummyRepository extends Repository<Dummy> {
     return await dummy.remove();
   }
 
-  async updateDummy(ageObject: Dummy): Promise<Dummy> {
-    return ageObject.save();
+  async updateDummy(dummy: Dummy): Promise<Dummy> {
+    return dummy.save();
   }
 }
