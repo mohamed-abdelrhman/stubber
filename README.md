@@ -39,10 +39,6 @@ npm i @mohamed-abdelrhman/stubber -g
 ```sh
 stubber
 ```
-if it doesn't work try `sudo npm link`
-then try `stubber` again
-
-
 
 ## Todo List
 ```sh 
