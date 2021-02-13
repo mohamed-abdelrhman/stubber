@@ -8,8 +8,8 @@ import { UpdateDummyInput } from './inputs/update-fileName.input';
 export class DummyService {
   constructor(private dummyRepository: DummyRepository) {}
 
-  async dummy(dummyId: string): Promise<Dummy> {
-    const dummy = await this.dummyRepository.dummy(dummyId);
+  async dummy(dummy_id: string): Promise<Dummy> {
+    const dummy = await this.dummyRepository.dummy(dummy_id);
     if (!dummy) throw new NotFoundException();
     return dummy;
   }
@@ -23,18 +23,16 @@ export class DummyService {
   }
 
   async updateDummy(updateDummyInput: UpdateDummyInput): Promise<Dummy> {
-    const dummy: Dummy = await this.dummyRepository.dummy(updateDummyInput.dummyId);
-    if (!dummy) throw new NotFoundException();
-    delete updateDummyInput.dummyId;
+    const dummy: Dummy = await this.dummy(updateDummyInput.dummy_id);
+    delete updateDummyInput.dummy_id;
     for (const key in updateDummyInput) {
       dummy[key] = updateDummyInput[key];
     }
     return this.dummyRepository.updateDummy(dummy);
   }
 
-  async deleteDummy(dummyId: string) {
-    const dummy: Dummy = await this.dummyRepository.dummy(dummyId);
-    if (!dummy) throw new NotFoundException();
+  async deleteDummy(dummy_id: string) {
+    const dummy: Dummy = await this.dummy(dummy_id);
     await this.dummyRepository.deleteDummy(dummy);
   }
 }

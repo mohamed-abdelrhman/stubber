@@ -82,11 +82,14 @@ const createInputFile =  function(moduleName,folderName,fileName,crud=false){
         createFile(fileTypes.input,moduleName,folderName+'/inputs',fileName,stubPath)
     }else {
         createFolder(folderName+'/inputs')
-        stubPath = __dirname+'/stubs/'+stubType+'/Dummy.'+fileTypes.input+'.stub'
-        createFile(fileTypes.input,ConvertFileNameToModuleName('create-'+moduleName),folderName+'/inputs','create-'+fileName,stubPath)
-        createFile(fileTypes.input,ConvertFileNameToModuleName('update-'+moduleName),folderName+'/inputs','update-'+fileName,stubPath)
-        createFile(fileTypes.input,ConvertFileNameToModuleName('get-'+moduleName),folderName+'/inputs','get-'+fileName,stubPath)
-        createFile(fileTypes.input,ConvertFileNameToModuleName('delete-'+moduleName),folderName+'/inputs','delete-'+fileName,stubPath)
+        stubPath = __dirname+'/stubs/'+stubType+'/create-Dummy.'+fileTypes.input+'.stub'
+        createFile(fileTypes.input,ConvertFileNameToModuleName(moduleName),folderName+'/inputs','create-'+fileName,stubPath)
+      stubPath = __dirname+'/stubs/'+stubType+'/update-Dummy.'+fileTypes.input+'.stub'
+      createFile(fileTypes.input,ConvertFileNameToModuleName(moduleName),folderName+'/inputs','update-'+fileName,stubPath)
+      stubPath = __dirname+'/stubs/'+stubType+'/get-Dummy.'+fileTypes.input+'.stub'
+      createFile(fileTypes.input,ConvertFileNameToModuleName(moduleName),folderName+'/inputs','get-'+fileName,stubPath)
+      stubPath = __dirname+'/stubs/'+stubType+'/delete-Dummy.'+fileTypes.input+'.stub'
+      createFile(fileTypes.input,ConvertFileNameToModuleName(moduleName),folderName+'/inputs','delete-'+fileName,stubPath)
     }
 
 }
