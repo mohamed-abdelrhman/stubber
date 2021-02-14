@@ -1,0 +1,25 @@
+import { Test } from '@nestjs/testing';
+import { DummyRepository } from './fileName.repository';
+import { DummyService } from './fileName.service';
+
+const mockDummyRepository = () => ({});
+
+describe('TestDummyService', () => {
+  let service;
+  let repository;
+  beforeEach(async () => {
+    const module = await Test.createTestingModule({
+      providers: [
+        DummyService,
+        { provide: DummyRepository, useFactory: mockDummyRepository },
+      ],
+    }).compile();
+    service = await module.get<DummyService>(DummyService);
+    repository = await module.get<DummyRepository>(DummyRepository);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+    expect(repository).toBeDefined();
+  });
+});

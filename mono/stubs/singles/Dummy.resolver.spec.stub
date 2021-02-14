@@ -1,0 +1,58 @@
+import { Test } from '@nestjs/testing';
+import { Dummy } from './entities/fileName.entity';
+import { DummyModule } from './fileName.module';
+import { INestApplication, NotFoundException } from '@nestjs/common';
+// import { PostgresDatabaseProviderModule } from '../../providers/database/postgres/provider.module';
+import { getConnection } from 'typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DummyResolver } from './fileName.resolver';
+import { DummyService } from './fileName.service';
+import { DummyRepository } from './fileName.repository';
+
+describe('DummyModuleIntegration', () => {
+  let app: INestApplication;
+  let resolver;
+  let connection;
+
+  beforeAll(async () => {
+    const module = await Test.createTestingModule({
+      imports: [
+        DummyModule,
+        // PostgresDatabaseProviderModule,
+        TypeOrmModule.forRoot({
+          type: 'postgres',
+          host: 'localhost',
+          port: 5432,
+          username: 'postgres',
+          password: '123456',
+          database: 'e2e_test',
+          entities: [Dummy],
+          synchronize: true,
+        }),
+      ],
+      providers: [
+        DummyResolver,
+        DummyService,
+        DummyRepository,
+      ],
+      controllers: [],
+    }).compile();
+    app = module.createNestApplication();
+    await app.init();
+    resolver = module.get<DummyResolver>(DummyResolver);
+    connection = getConnection();
+  });
+
+  afterEach(async () => {
+    await connection.createQueryBuilder().delete().from(Dummy).execute();
+  });
+  afterAll(async () => {
+    await app.close();
+  });
+
+  describe('dummy controller', () => {
+    it('should be defined', async () => {
+      expect(resolver).toBeDefined();
+    });
+  });
+});

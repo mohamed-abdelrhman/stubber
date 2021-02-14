@@ -29,14 +29,14 @@ export class DummyResolver {
   }
 
   @Mutation((returns) => DummyType)
-  updateDummyDetails(
+  updateDummy(
     @Args('dummyInput') dummyInput: UpdateDummyInput,
   ): Promise<Dummy> {
     return this.dummyService.updateDummy(dummyInput);
   }
 
   @Mutation()
-  deleteFavourite(
+  deleteDummy(
     @Args('deleteDummyInput') deleteDummyInput: DeleteDummyInput,
   ) {
     return this.dummyService.deleteDummy(deleteDummyInput.dummy_id);
