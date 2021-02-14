@@ -16,7 +16,9 @@ const call = async function (argv) {
   let folderName = (argv.moduleName).toLowerCase()
   let fileName = (argv.moduleName).toLowerCase()
   //create Main folder
-  await createFolder(folderName)
+  await createFolder('src')
+  await createFolder('src/models/')
+  await createFolder('src/models/'+folderName)
   let crud=argv.crud;
   let spec=false;
   if (argv.spec) spec=true;
@@ -68,14 +70,14 @@ const createControllerFile =  function(moduleName,folderName,fileName,crud=false
 const createEntityFile =  function(moduleName,folderName,fileName,crud=false){
   let stubType='/singles'
   if (crud)stubType='/crud';
-  createFolder(folderName+'/entities')
+  createFolder('src/models/'+folderName+'/entities')
   stubPath = __dirname+'/stubs'+stubType+'/Dummy.'+fileTypes.entity+'.stub'
   createFile(fileTypes.entity,moduleName,folderName+'/entities',fileName,stubPath)
 }
 const createDtoFile =  function(moduleName,folderName,fileName,crud=false){
   let stubType='/singles'
   if (crud)stubType='/crud';
-  createFolder(folderName+'/dto')
+  createFolder('src/models/'+folderName+'/dto')
 
   if (!crud){
     stubPath = __dirname+'/stubs'+stubType+'/Dummy.'+fileTypes.dto+'.stub'

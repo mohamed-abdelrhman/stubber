@@ -17,7 +17,9 @@ const call = async function (argv) {
     let folderName = (argv.moduleName).toLowerCase()
     let fileName = (argv.moduleName).toLowerCase()
     //create Main folder
-    await createFolder(folderName)
+    await createFolder('src')
+    await createFolder('src/models')
+    await createFolder('src/models/'+folderName)
     let crud=argv.crud;
   await createAllMonoFiles(moduleName, folderName, fileName,crud)
 
@@ -62,14 +64,14 @@ const createResolverFile =  function(moduleName,folderName,fileName,crud=false){
 const createEntityFile =  function(moduleName,folderName,fileName,crud=false){
     let stubType='/singles'
     if (crud)stubType='/crud';
-     createFolder(folderName+'/entities')
+     createFolder('src/models/'+folderName+'/entities')
     stubPath = __dirname+'/stubs'+stubType+'/Dummy.'+fileTypes.entity+'.stub'
      createFile(fileTypes.entity,moduleName,folderName+'/entities',fileName,stubPath)
 }
 const createTypeFile =  function(moduleName,folderName,fileName,crud=false){
     let stubType='/singles'
     if (crud)stubType='/crud';
-     createFolder(folderName+'/types')
+     createFolder('src/models/'+folderName+'/types')
     stubPath = __dirname+'/stubs/'+stubType+'/Dummy.'+fileTypes.type+'.stub'
      createFile(fileTypes.type,moduleName,folderName+'/types',fileName,stubPath)
 }
@@ -77,11 +79,11 @@ const createInputFile =  function(moduleName,folderName,fileName,crud=false){
     let stubType='/singles'
     if (crud)stubType='/crud';
     if (!crud){
-        createFolder(folderName+'/inputs')
+        createFolder('src/models/'+folderName+'/inputs')
         stubPath = __dirname+'/stubs/'+stubType+'/Dummy.'+fileTypes.input+'.stub'
         createFile(fileTypes.input,moduleName,folderName+'/inputs',fileName,stubPath)
     }else {
-        createFolder(folderName+'/inputs')
+        createFolder('src/models/'+folderName+'/inputs')
         stubPath = __dirname+'/stubs/'+stubType+'/create-Dummy.'+fileTypes.input+'.stub'
         createFile(fileTypes.input,ConvertFileNameToModuleName(moduleName),folderName+'/inputs','create-'+fileName,stubPath)
       stubPath = __dirname+'/stubs/'+stubType+'/update-Dummy.'+fileTypes.input+'.stub'

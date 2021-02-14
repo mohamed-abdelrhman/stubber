@@ -16,7 +16,7 @@ const copyFile = async function (from, to){
 }
 
 const createFile=async function (type,moduleName,folderName,fileName,stubPath) {
-    let filePath =folderName+'/'+fileName+'.'+type+'.ts';
+    let filePath ='src/models/'+folderName+'/'+fileName+'.'+type+'.ts';
     if (fs.existsSync(filePath)){
         console.log(fileName+'.'+type+'.ts already there !')
     }else {
