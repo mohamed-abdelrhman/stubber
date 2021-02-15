@@ -24,13 +24,13 @@ const call = async function (argv) {
     let spec=false;
     if (argv.spec) spec=true;
 
-    createModuleFile(moduleName,folderName,fileName,crud)
-    createServiceFile(moduleName,folderName,fileName,crud,spec)
-    createRepositoryFile(moduleName,folderName,fileName,crud)
-    createResolverFile(moduleName,folderName,fileName,crud,spec)
-    createEntityFile(moduleName,folderName,fileName,crud)
-    createTypeFile(moduleName,folderName,fileName,crud)
-    createInputFile(moduleName,folderName,fileName,crud)
+    await createModuleFile(moduleName,folderName,fileName,crud)
+    await createServiceFile(moduleName,folderName,fileName,crud,spec)
+    await createRepositoryFile(moduleName,folderName,fileName,crud)
+    await createResolverFile(moduleName,folderName,fileName,crud,spec)
+    await createEntityFile(moduleName,folderName,fileName,crud)
+    await createTypeFile(moduleName,folderName,fileName,crud)
+    await createInputFile(moduleName,folderName,fileName,crud)
 }
 
 

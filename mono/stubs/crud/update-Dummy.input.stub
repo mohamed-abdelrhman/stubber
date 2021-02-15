@@ -1,4 +1,4 @@
-import { CreateDummyInput } from './create-fileName.input';
+import { CreateDummyInput } from './create-dummy.input';
 import { InputType, Field, PartialType } from '@nestjs/graphql';
 
 @InputType()

@@ -20,8 +20,8 @@ const createFile=async function (type,moduleName,folderName,fileName,stubPath) {
     if (fs.existsSync(filePath)){
         console.log(fileName+'.'+type+'.ts already there !')
     }else {
-        copyFile(stubPath,filePath).then( async ()=> {
-            await ReplaceDummyData(filePath,moduleName,fileName)
+        copyFile(stubPath,filePath).then(  ()=> {
+             ReplaceDummyData(filePath,moduleName,fileName)
             console.log(fileName+'.'+type+'.ts created !')
         })
     }
