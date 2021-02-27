@@ -25,7 +25,9 @@
 ```sh
 till this moment stupper only support
 Typeorm
+
 Graphql
+Rest
 Microservice (non http)
 you are very welcome to collabrate here.
 ```
