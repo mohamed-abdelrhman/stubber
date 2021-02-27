@@ -104,6 +104,6 @@ const createInputFile =  function(moduleName,folderName,fileName,crud=false){
 
 }
 
-exports.mono ={
+exports.graph ={
     call
 }

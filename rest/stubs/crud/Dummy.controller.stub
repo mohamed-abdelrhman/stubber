@@ -1,0 +1,42 @@
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
+import { DummyService } from './fileName.service';
+import { CreateDummyDto } from './dto/create-fileName.dto';
+import { UpdateDummyDto } from './dto/update-fileName.dto';
+
+@Controller('dummys')
+export class DummyController {
+  constructor(private dummyService: DummyService) {}
+  @Post()
+  async createDummy(@Body() createDummyDto: CreateDummyDto) {
+    return this.dummyService.createDummy(createDummyDto);
+  }
+
+  @Get(':id')
+  async dummy(@Param('id') id: string) {
+    return this.dummyService.dummy(id);
+  }
+
+  @Put(':id')
+  async updateDummy(@Param('id') id: string, @Body() updateDummy: UpdateDummyDto) {
+    return this.dummyService.updateDummy(id, updateDummy);
+  }
+
+
+  @Get()
+  async dummys() {
+    return this.dummyService.dummys();
+  }
+
+  @Delete(':dummy_id')
+  async deleteDummy(@Param('dummy_id') dummy_id: string) {
+    return this.dummyService.deleteDummy(dummy_id);
+  }
+}

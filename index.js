@@ -1,5 +1,6 @@
-const {mono} = require("./mono/mono");
+const {graph} = require("./graph/graph");
 const {microService} = require("./micro-service/micro-service");
+const {rest} = require("./rest/rest");
 
 
 const cli = require('clui')
@@ -53,7 +54,7 @@ const askInfo = () => {
     {
       name: 'transportLayer',
       type: 'list',
-      choices: ['Graphql', 'Microservice',],
+      choices: ['Graphql', 'Microservice','REST'],
       message: 'What transport layer do you use?',
       filter: function(val) {
         return val ;
@@ -99,9 +100,11 @@ const success = () => {
   const answer = await askInfo()
   const { transportLayer } = answer
   if (transportLayer ==='Graphql' ) {
-    await mono.call(answer)
+    await graph.call(answer)
   }else if (transportLayer ==='Microservice'){
     await microService.call(answer)
+  }else if (transportLayer === "REST"){
+    await rest.call(answer)
   }
 
 

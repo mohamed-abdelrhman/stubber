@@ -1,0 +1,101 @@
+import { Test } from '@nestjs/testing';
+import { DummyRepository } from './fileName.repository';
+import { DummyService } from './fileName.service';
+import { NotFoundException } from '@nestjs/common';
+
+const mockDummyRepository = () => ({
+  dummy: jest.fn(),
+  dummys: jest.fn(),
+  createDummy: jest.fn(),
+  updateDummy: jest.fn(),
+  deleteDummy: jest.fn(),
+});
+
+const mockedDummys= [
+  {
+    dummy_id: 'test-id',
+  },
+  {
+    dummy_id: 'test-id-2',
+  },
+];
+
+describe('TestDummyService', () => {
+  let dummyService;
+  let dummyRepository;
+  beforeEach(async () => {
+    const module = await Test.createTestingModule({
+      providers: [
+        DummyService,
+        { provide: DummyRepository, useFactory: mockDummyRepository },
+      ],
+    }).compile();
+    dummyService = module.get<DummyService>(DummyService);
+    dummyRepository = module.get<DummyRepository>(DummyRepository);
+  });
+
+  describe('dummy', () => {
+    it('should return dummy using id', async () => {
+      expect(dummyRepository.dummy).not.toHaveBeenCalled();
+      await dummyRepository.dummy.mockResolvedValue(mockedDummys[0]);
+
+      // console.log(dummyRepository);
+      const result = await dummyService.dummy(mockedDummys[0].dummy_id);
+      expect(dummyRepository.dummy).toBeCalled();
+      expect(result).toEqual(
+        mockedDummys.filter((dummy) => dummy.dummy_id === result.dummy_id)[0],
+      );
+    });
+
+    it('should throw an exception when dummy id not provided', async () => {
+      dummyRepository.dummy.mockResolvedValue(null);
+      await expect(dummyService.dummy(1)).rejects.toThrow(
+        NotFoundException,
+      );
+    });
+  });
+
+  describe('dummys', () => {
+    it('should return dummys', async () => {
+      dummyRepository.dummys.mockResolvedValue(mockedDummys);
+      expect(await dummyService.dummys({})).toEqual(mockedDummys);
+      expect(dummyRepository.dummys).toHaveBeenCalled();
+    });
+  });
+
+  describe('deleteDummy', () => {
+    it('should delete dummy', async () => {
+      dummyRepository.dummy.mockResolvedValue(mockedDummys[0]);
+      dummyRepository.deleteDummy.mockResolvedValue({ rawAffected: 1 });
+      expect(dummyRepository.deleteDummy).not.toHaveBeenCalled();
+      await expect(dummyService.deleteDummy(1)).resolves.not.toThrow();
+      expect(dummyRepository.deleteDummy).toHaveBeenCalled();
+      expect(dummyRepository.dummy).toHaveBeenCalled();
+    });
+  });
+
+  describe('createDummy', () => {
+    it('should create dummy', async () => {
+      dummyRepository.createDummy.mockResolvedValue(mockedDummys[0]);
+      expect(dummyRepository.createDummy).not.toHaveBeenCalled();
+      await expect(
+        dummyService.createDummy(mockedDummys[0]),
+      ).resolves.toEqual(mockedDummys[0]);
+      expect(dummyRepository.createDummy).toHaveBeenCalled();
+    });
+  });
+
+  describe('updateDummy', () => {
+    it('should update dummy', async () => {
+      dummyRepository.updateDummy.mockResolvedValue(mockedDummys[0]);
+      dummyRepository.dummy.mockResolvedValue(mockedDummys[0]);
+      expect(dummyRepository.updateDummy).not.toHaveBeenCalled();
+      expect(dummyRepository.dummy).not.toHaveBeenCalled();
+      await expect(
+        dummyService.updateDummy(mockedDummys[0]),
+      ).resolves.toEqual(mockedDummys[0]);
+      expect(dummyRepository.updateDummy).toHaveBeenCalled();
+      expect(dummyRepository.dummy).toHaveBeenCalled();
+    });
+  });
+});

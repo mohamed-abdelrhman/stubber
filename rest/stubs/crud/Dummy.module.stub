@@ -1,0 +1,12 @@
+import { Module } from '@nestjs/common';
+import { DummyService } from './fileName.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DummyRepository } from './fileName.repository';
+import { Dummy } from './entities/fileName.entity';
+
+@Module({
+  imports: [TypeOrmModule.forFeature([Dummy])],
+  providers: [DummyService, DummyRepository],
+  exports: [],
+})
+export class DummyModule {}
