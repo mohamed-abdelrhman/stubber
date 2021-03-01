@@ -45,7 +45,6 @@ stubber
 ## Todo List
 ```sh 
 Support  CQRS
-support REST API
 support sequelize
 support mongoose
 Support native connection
