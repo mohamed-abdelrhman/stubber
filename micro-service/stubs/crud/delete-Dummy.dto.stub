@@ -1,3 +1,0 @@
-export interface DeleteDummyDto {
-  dummy_id: string;
-}

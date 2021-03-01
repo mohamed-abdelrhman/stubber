@@ -1,1 +1,1 @@
-export interface DummyDto {}
+export class DummyDto {}

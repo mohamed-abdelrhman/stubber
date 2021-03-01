@@ -23,8 +23,8 @@ export class DummyController {
 
   // define message pattern for this service
   @MessagePattern('dummy')
-  async dummy(getDummyDto: GetDummyDto) {
-    return this.dummyService.dummy(getDummyDto.dummy_id);
+  async dummy(dummy_id: string) {
+    return this.dummyService.dummy(dummy_id);
   }
     // define message pattern for this service
     @MessagePattern('dummys')
@@ -34,7 +34,7 @@ export class DummyController {
 
   // define message pattern for this service
   @MessagePattern('deleteDummy')
-  async deleteDummy(deleteDummyDto: DeleteDummyDto) {
-    return this.dummyService.deleteDummy(deleteDummyDto.dummy_id);
+  async deleteDummy(dummy_id: string) {
+    return this.dummyService.deleteDummy(dummy_id);
   }
 }

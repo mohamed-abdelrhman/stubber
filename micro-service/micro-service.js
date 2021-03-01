@@ -87,10 +87,6 @@ const createDtoFile =  function(moduleName,folderName,fileName,crud=false){
     createFile(fileTypes.dto,ConvertFileNameToModuleName(moduleName),folderName+'/dto','create-'+fileName,stubPath)
     stubPath = __dirname+'/stubs'+stubType+'/update-Dummy.'+fileTypes.dto+'.stub'
     createFile(fileTypes.dto,ConvertFileNameToModuleName(moduleName),folderName+'/dto','update-'+fileName,stubPath)
-    stubPath = __dirname+'/stubs'+stubType+'/get-Dummy.'+fileTypes.dto+'.stub'
-    createFile(fileTypes.dto,ConvertFileNameToModuleName(moduleName),folderName+'/dto','get-'+fileName,stubPath)
-    stubPath = __dirname+'/stubs'+stubType+'/delete-Dummy.'+fileTypes.dto+'.stub'
-    createFile(fileTypes.dto,ConvertFileNameToModuleName(moduleName),folderName+'/dto','delete-'+fileName,stubPath)
   }
 
 }
