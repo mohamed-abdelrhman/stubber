@@ -24,9 +24,9 @@ const call = async function (argv) {
     if (argv.spec) spec=true;
 
     await createModuleFile(moduleName,folderName,fileName,crud)
+    await createEntityInterface(moduleName,folderName,fileName,crud)
     await createServiceFile(moduleName,folderName,fileName,crud,spec)
     await createResolverFile(moduleName,folderName,fileName,crud,spec)
-    await createEntityFile(moduleName,folderName,fileName,crud)
     await createTypeFile(moduleName,folderName,fileName,crud)
     await createInputFile(moduleName,folderName,fileName,crud)
 }
@@ -38,6 +38,14 @@ const createModuleFile =  function(moduleName,folderName,fileName,crud=false){
     if (crud)stubType='/crud';
     let stubPath = __dirname+'/stubs'+stubType+'/Dummy.'+fileTypes.module+'.stub'
      createFile(fileTypes.module,moduleName,folderName,fileName,stubPath)
+}
+
+
+const createEntityInterface =  function(moduleName,folderName,fileName,crud=false){
+    let stubType='/singles'
+    if (crud)stubType='/crud';
+    let stubPath = __dirname+'/stubs'+stubType+'/Dummy.'+fileTypes.interface+'.stub'
+    createFile(fileTypes.interface,moduleName,folderName,fileName,stubPath)
 }
 const createServiceFile =  function(moduleName,folderName,fileName,crud=false,spec=false){
     let stubType='/singles'
@@ -58,13 +66,6 @@ const createResolverFile =  function(moduleName,folderName,fileName,crud=false,s
 
 }
 
-const createEntityFile =  function(moduleName,folderName,fileName,crud=false){
-    let stubType='/singles'
-    if (crud)stubType='/crud';
-     createFolder('src/models/'+folderName+'/entities')
-    stubPath = __dirname+'/stubs'+stubType+'/Dummy.'+fileTypes.entity+'.stub'
-     createFile(fileTypes.entity,moduleName,folderName+'/entities',fileName,stubPath)
-}
 const createTypeFile =  function(moduleName,folderName,fileName,crud=false){
     let stubType='/singles'
     if (crud)stubType='/crud';

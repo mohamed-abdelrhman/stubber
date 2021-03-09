@@ -1,7 +1,7 @@
 const {graph} = require("./graph/graph");
 const {microService} = require("./micro-service/micro-service");
 const {rest} = require("./rest/rest");
-const {microGraph} = require("./microservice-graph");
+const {microGraph} = require("./microservice-graph/micro-graph");
 
 
 const cli = require('clui')

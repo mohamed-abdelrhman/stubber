@@ -1,38 +1,73 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { DummyRepository } from './fileName.repository';
-import { Dummy } from './entities/fileName.entity';
-import { CreateDummyInput } from './inputs/create-fileName.input';
-import { UpdateDummyInput } from './inputs/update-fileName.input';
+import { UpdateDummyInput } from './inputs/update-Dummy.input';
+import {
+  ClientProxy,
+  ClientProxyFactory,
+  Transport,
+} from '@nestjs/microservices';
+import { Dummy } from './interfaces/dummy.interfaces';
+import { GetDummyInput } from './inputs/get-dummy.input';
+import { PaginationOptions } from '../../common/pagination/pagination-options.args';
+import { DeleteDummyInput } from './inputs/delete-dummy.input';
+import { SuccessPayload } from '../../common/helpers/payloads/success.payload';
+import { CreateDummyInput } from './inputs/create-dummy.input';
 
 @Injectable()
 export class DummyService {
-  constructor(private dummyRepository: DummyRepository) {}
-
-  async dummy(dummy_id: string): Promise<Dummy> {
-    const dummy = await this.dummyRepository.dummy(dummy_id);
+  private client: ClientProxy;
+  constructor() {
+    this.client = ClientProxyFactory.create({
+      transport: Transport.TCP,
+      options: {
+        host: '127.0.0.1',
+        port: 8789,
+      },
+    });
+  }
+  async dummy(getDummyInput: GetDummyInput): Promise<Dummy> {
+    const dummy: Dummy = await this.client
+      .send<Dummy, GetDummyInput>('dummy', getDummyInput)
+      .toPromise();
     if (!dummy) throw new NotFoundException();
     return dummy;
   }
 
   dummys(): Promise<Dummy[]> {
-    return this.dummyRepository.dummys();
+    return this.client
+      .send<Dummy[], PaginationOptions>('dummys', {})
+      .toPromise();
   }
 
-  async createDummy(dummyInput: CreateDummyInput): Promise<Dummy> {
-    return await this.dummyRepository.createDummy(dummyInput);
+  async createDummy(dummyDto: CreateDummyInput): Promise<Dummy> {
+    return this.client
+      .send<Dummy, CreateDummyInput>('createDummy', dummyDto)
+      .toPromise();
   }
 
-  async updateDummy(updateDummyInput: UpdateDummyInput): Promise<Dummy> {
-    const dummy: Dummy = await this.dummy(updateDummyInput.dummy_id);
-    delete updateDummyInput.dummy_id;
-    for (const key in updateDummyInput) {
-      dummy[key] = updateDummyInput[key];
-    }
-    return this.dummyRepository.updateDummy(dummy);
+  async updateDummy(
+    updateDummyInput: UpdateDummyInput,
+  ): Promise<Dummy> {
+    const result = await this.client
+      .send<Dummy, UpdateDummyInput>(
+        'updateDummy',
+        updateDummyInput,
+      )
+      .toPromise();
+    if (!result) throw new NotFoundException();
+    return result;
   }
 
-  async deleteDummy(dummy_id: string) {
-    const dummy: Dummy = await this.dummy(dummy_id);
-    await this.dummyRepository.deleteDummy(dummy);
+  async deleteDummy(
+    deleteDummyInput: DeleteDummyInput,
+  ): Promise<SuccessPayload> {
+    const result: boolean = await this.client
+      .send<boolean, DeleteDummyInput>('deleteDummy', deleteDummyInput)
+      .toPromise();
+    if (!result) throw new NotFoundException();
+    return {
+      message: 'success',
+    };
   }
+
+
 }
