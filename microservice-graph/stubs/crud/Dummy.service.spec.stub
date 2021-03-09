@@ -1,0 +1,98 @@
+import { Test } from '@nestjs/testing';
+import { DummyService } from './dummy.service';
+import {ClientProxy, ClientsModule, Transport} from "@nestjs/microservices";
+import {DummyType} from "./types/dummy.type";
+import {CreateDummyInput} from "./inputs/create-fileName.input";
+import {UpdateDummyInput} from "./inputs/update-fileName.input";
+import {DeleteDummyInput} from "./inputs/delete-fileName.input";
+import { NotFoundException} from "@nestjs/common";
+import {GetDummyInput} from "./inputs/get-fileName.input";
+
+
+const mockedDummys = [{}];
+
+
+describe('TestDummyService', () => {
+    let service;
+    let client: ClientProxy;
+    let savedDummy:{dummy_id: number}
+    beforeAll(async () => {
+        const module = await Test.createTestingModule({
+            imports:[
+                ClientsModule.register([
+                    {
+                        name:"clientToken", transport:Transport.TCP,
+                        options: {
+                            host: '127.0.0.1',
+                            port: 8789,
+                        },
+                    }
+                    ])
+            ],
+            providers: [
+                DummyService,
+            ],
+        }).compile();
+        service = module.get<DummyService>(DummyService);
+        client= module.get('clientToken')
+        await client.connect()
+
+         savedDummy = await client.send('createDummy', mockedDummys[0]).toPromise()
+
+    });
+    afterAll( async ()=>{
+        client.close();
+    })
+
+    describe('dummy', () => {
+        it('should return dummy using id', async () => {
+            let getDummy: GetDummyInput
+            getDummy={dummy_id: savedDummy.dummy_id}
+            const result = await service.dummy(getDummy);
+            expect(result).toEqual(savedDummy);
+        });
+
+        it('should throw an exception when dummy id not provided', async () => {
+            await expect(service.dummy({dummy_id:0})).rejects.toThrow(
+                NotFoundException,
+            );
+        });
+    });
+    describe('dummys', () => {
+        it('should return all dummys with type dummy', async () => {
+            const res=await service.dummys({})
+            expect(res[0]).toMatchObject<DummyType>({
+                dummy_id:expect.any(Number)
+            })
+
+        });
+    });
+    describe('createDummyTest', () => {
+        it('should create dummy', async () => {
+            let createDummy: CreateDummyInput
+            createDummy= mockedDummys[0]
+            const res=await service.createDummy(createDummy)
+            expect(res).toMatchObject<DummyType>({
+                dummy_id:expect.any(Number)
+            })
+
+        });
+    });
+    describe('updateDummy', () => {
+        it('should update dummy', async () => {
+            let updateDummy: UpdateDummyInput
+            updateDummy = Object.assign({dummy_id: savedDummy.dummy_id},mockedDummys[0])
+            const res=await service.updateDummy(updateDummy)
+            expect(res).toEqual(updateDummy)
+        });
+    });
+    describe('deleteDummy', () => {
+        it('should delete dummy', async () => {
+            let deleteDummy: DeleteDummyInput
+            deleteDummy={dummy_id: savedDummy.dummy_id}
+            let res= await service.deleteDummy(deleteDummy)
+            expect(res).toEqual({"message":'success'})
+            await expect(service.deleteDummy(deleteDummy)).rejects.toThrow(NotFoundException)
+        });
+    });
+});

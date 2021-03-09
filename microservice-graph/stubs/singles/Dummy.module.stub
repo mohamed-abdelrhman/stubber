@@ -1,0 +1,10 @@
+import { Module } from '@nestjs/common';
+import { DummyService } from './fileName.service';
+import { DummyResolver } from './fileName.resolver';
+
+@Module({
+  imports: [],
+  providers: [DummyService, DummyResolver],
+  exports: [],
+})
+export class DummyModule {}

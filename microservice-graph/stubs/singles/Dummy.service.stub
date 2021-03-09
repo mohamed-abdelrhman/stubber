@@ -1,0 +1,17 @@
+import { Injectable } from '@nestjs/common';
+import { DummyRepository } from './fileName.repository';
+
+@Injectable()
+export class DummyService {
+   private client: ClientProxy;
+    constructor() {
+      this.client = ClientProxyFactory.create({
+        transport: Transport.TCP,
+        options: {
+          host: '127.0.0.1',
+          port: 8877,
+        },
+      });
+    }
+
+}

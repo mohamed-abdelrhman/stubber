@@ -1,0 +1,8 @@
+import { Resolver } from '@nestjs/graphql';
+import { DummyService } from './fileName.service';
+import { DummyType } from './types/fileName.type';
+
+@Resolver((of) => DummyType)
+export class DummyResolver {
+  constructor(private  dummyService:  DummyService) {}
+}

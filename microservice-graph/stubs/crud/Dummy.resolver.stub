@@ -1,0 +1,44 @@
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { DummyService } from './fileName.service';
+import { DummyType } from './types/fileName.type';
+import { Dummy } from './entities/fileName.entity';
+import { GetDummyInput } from './inputs/get-fileName.input';
+import { CreateDummyInput } from './inputs/create-fileName.input';
+import { DeleteDummyInput } from './inputs/delete-fileName.input';
+import { UpdateDummyInput } from './inputs/update-fileName.input';
+
+@Resolver((of) => DummyType)
+export class DummyResolver {
+  constructor(private dummyService: DummyService) {}
+
+  @Query((returns) => DummyType)
+  dummy(@Args('getDummyInput') getDummyInput: GetDummyInput): Promise<Dummy> {
+    return this.dummyService.dummy(getDummyInput.dummy_id);
+  }
+
+  @Query((returns) => [DummyType])
+  dummys(): Promise<Dummy[]> {
+    return this.dummyService.dummys();
+  }
+
+  @Mutation(() => DummyType)
+  createDummy(
+    @Args('createDummyInput') createDummyInput: CreateDummyInput,
+  ): Promise<Dummy> {
+    return this.dummyService.createDummy(createDummyInput);
+  }
+
+  @Mutation((returns) => DummyType)
+  updateDummy(
+    @Args('dummyInput') dummyInput: UpdateDummyInput,
+  ): Promise<Dummy> {
+    return this.dummyService.updateDummy(dummyInput);
+  }
+
+  @Mutation()
+  deleteDummy(
+    @Args('deleteDummyInput') deleteDummyInput: DeleteDummyInput,
+  ) {
+    return this.dummyService.deleteDummy(deleteDummyInput.dummy_id);
+  }
+}

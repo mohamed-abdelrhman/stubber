@@ -1,0 +1,38 @@
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { DummyRepository } from './fileName.repository';
+import { Dummy } from './entities/fileName.entity';
+import { CreateDummyInput } from './inputs/create-fileName.input';
+import { UpdateDummyInput } from './inputs/update-fileName.input';
+
+@Injectable()
+export class DummyService {
+  constructor(private dummyRepository: DummyRepository) {}
+
+  async dummy(dummy_id: string): Promise<Dummy> {
+    const dummy = await this.dummyRepository.dummy(dummy_id);
+    if (!dummy) throw new NotFoundException();
+    return dummy;
+  }
+
+  dummys(): Promise<Dummy[]> {
+    return this.dummyRepository.dummys();
+  }
+
+  async createDummy(dummyInput: CreateDummyInput): Promise<Dummy> {
+    return await this.dummyRepository.createDummy(dummyInput);
+  }
+
+  async updateDummy(updateDummyInput: UpdateDummyInput): Promise<Dummy> {
+    const dummy: Dummy = await this.dummy(updateDummyInput.dummy_id);
+    delete updateDummyInput.dummy_id;
+    for (const key in updateDummyInput) {
+      dummy[key] = updateDummyInput[key];
+    }
+    return this.dummyRepository.updateDummy(dummy);
+  }
+
+  async deleteDummy(dummy_id: string) {
+    const dummy: Dummy = await this.dummy(dummy_id);
+    await this.dummyRepository.deleteDummy(dummy);
+  }
+}

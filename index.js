@@ -1,6 +1,7 @@
 const {graph} = require("./graph/graph");
 const {microService} = require("./micro-service/micro-service");
 const {rest} = require("./rest/rest");
+const {microGraph} = require("./microservice-graph");
 
 
 const cli = require('clui')
@@ -54,7 +55,7 @@ const askInfo = () => {
     {
       name: 'transportLayer',
       type: 'list',
-      choices: ['Graphql', 'Microservice','REST'],
+      choices: ['Graphql', 'Microservice','REST','MicroserviceGraphClient'],
       message: 'What transport layer do you use?',
       filter: function(val) {
         return val ;
@@ -105,8 +106,9 @@ const success = () => {
     await microService.call(answer)
   }else if (transportLayer === "REST"){
     await rest.call(answer)
+  }else if (transportLayer ==="MicroserviceGraphClient"){
+    await microGraph.call(answer)
   }
-
 
   success()
 })()

@@ -1,0 +1,50 @@
+import { Test } from '@nestjs/testing';
+import { DummyService } from './dummy.service';
+import {ClientProxy, ClientsModule, Transport} from "@nestjs/microservices";
+import {DummyType} from "./types/dummy.type";
+import {CreateDummyInput} from "./inputs/create-fileName.input";
+import {UpdateDummyInput} from "./inputs/update-fileName.input";
+import {DeleteDummyInput} from "./inputs/delete-fileName.input";
+import { NotFoundException} from "@nestjs/common";
+import {GetDummyInput} from "./inputs/get-fileName.input";
+
+
+const mockedDummys = [{}];
+
+
+describe('TestDummyService', () => {
+    let service;
+    let client: ClientProxy;
+    let savedDummy:{dummy_id: number}
+    beforeAll(async () => {
+        const module = await Test.createTestingModule({
+            imports:[
+                ClientsModule.register([
+                    {
+                        name:"clientToken", transport:Transport.TCP,
+                        options: {
+                            host: '127.0.0.1',
+                            port: 8789,
+                        },
+                    }
+                    ])
+            ],
+            providers: [
+                DummyService,
+            ],
+        }).compile();
+        service = module.get<DummyService>(DummyService);
+        client= module.get('clientToken')
+        await client.connect()
+
+         savedDummy = await client.send('createDummy', mockedDummys[0]).toPromise()
+
+    });
+    afterAll( async ()=>{
+        client.close();
+    })
+
+
+
+});
+

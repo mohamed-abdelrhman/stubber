@@ -88,7 +88,6 @@ const createDtoFile =  function(moduleName,folderName,fileName,crud=false){
     stubPath = __dirname+'/stubs'+stubType+'/update-Dummy.'+fileTypes.dto+'.stub'
     createFile(fileTypes.dto,ConvertFileNameToModuleName(moduleName),folderName+'/dto','update-'+fileName,stubPath)
   }
-
 }
 
 exports.microService ={
