@@ -6,7 +6,7 @@ import { UpdateDummyInput } from './inputs/update-Dummy.input';
 import { SuccessPayload } from '../../common/helpers/payloads/success.payload';
 import { DummyType } from './types/dummy.type';
 import { CreateDummyInput } from './inputs/create-dummy.input';
-import { Dummy } from './dummy.interfaces';
+import { Dummy } from './dummy.interface';
 @Resolver((of) => DummyType)
 export class DummyResolver {
   constructor(private dummyService: DummyService) {}

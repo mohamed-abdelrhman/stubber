@@ -5,7 +5,7 @@ import {
   ClientProxyFactory,
   Transport,
 } from '@nestjs/microservices';
-import { Dummy } from './interfaces/dummy.interfaces';
+import { Dummy } from './dummy.interface';
 import { GetDummyInput } from './inputs/get-dummy.input';
 import { PaginationOptions } from '../../common/pagination/pagination-options.args';
 import { DeleteDummyInput } from './inputs/delete-dummy.input';
